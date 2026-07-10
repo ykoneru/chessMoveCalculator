@@ -1,0 +1,71 @@
+body {
+
+    background-color: #ececec;
+
+}
+
+h1 {
+
+    text-align: center;
+
+    margin: 30px;
+
+}
+
+#board {
+
+    width: 720px;
+    height: 720px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+
+    border: 4px solid black;
+
+    overflow: hidden;
+
+}
+
+.square {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-end;
+
+}
+
+.white {
+
+    background-color: #f0d9b5;
+
+}
+
+.black {
+
+    background-color: #b58863;
+
+}
+
+.piece {
+
+    width: 88%;
+
+    height: 88%;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+
+.selected {
+
+    background-color: #f6f669 !important;
+
+}
