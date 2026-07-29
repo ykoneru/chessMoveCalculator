@@ -13,21 +13,23 @@ h1 {
 }
 
 #board {
-
     width: 720px;
     height: 720px;
-
     margin: auto;
-
     display: grid;
-
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-
     border: 4px solid black;
-
     overflow: hidden;
+    background-color: #000;
+}
 
+#pgn-screen {
+    min-height: calc(100vh - 160px);
+}
+
+#analyzer-screen {
+    padding-bottom: 30px;
 }
 
 .square {
