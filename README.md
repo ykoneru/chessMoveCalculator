@@ -77,14 +77,6 @@ proxy/             # nginx config
 docs/screenshots/  # README images
 ```
 
-## Secrets
-
-Don't commit `.env` — it's gitignored. Copy from `.env.example`.
-
-If you deploy somewhere, set `MYSQL_*`, `DB_*`, `API_SECRET_KEY`, and
-`GEMINI_API_KEY` as env vars / secrets there. For a cloud database, point
-`DB_HOST` at that hostname instead of `database`.
-
 ## Example PGN
 
 ```
