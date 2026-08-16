@@ -1,0 +1,39 @@
+name: chessapp
+
+# Base compose file.
+# Local stuff (nodemon, volume mounts) lives in compose.override.yml and
+# gets merged when you run `docker compose up`.
+# To skip that: docker compose -f compose.yml up --build
+#
+# Don't commit a real .env. Locally we load .env; in the cloud set the same
+# vars as secrets / app settings.
+
+services:
+  proxy:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./proxy/default.conf.template:/etc/nginx/templates/default.conf.template
+      - ./frontend/public:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+
+  api:
+    build: ./api
+    restart: unless-stopped
+    environment:
+      - PORT=80
+      - NODE_ENV=production
+    env_file:
+      - .env
+
+  database:
+    image: mariadb:latest
+    restart: unless-stopped
+    ports:
+      - 3307:3306
+    volumes:
+      - "./database/data:/var/lib/mysql"
+      - "./database/db_schema:/docker-entrypoint-initdb.d"
+    env_file:
+      - .env

@@ -1,0 +1,16 @@
+CREATE TABLE user (
+  usr_id INT AUTO_INCREMENT PRIMARY KEY,
+  usr_username VARCHAR(255) UNIQUE NOT NULL,
+  usr_email VARCHAR(255) UNIQUE NOT NULL,
+  usr_password VARCHAR(255) NOT NULL,
+  usr_salt VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE chess_game (
+  game_id INT AUTO_INCREMENT PRIMARY KEY,
+  game_user_id INT NOT NULL,
+  game_name VARCHAR(255) NOT NULL,
+  game_pgn TEXT NOT NULL,
+  game_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (game_user_id) REFERENCES user(usr_id) ON DELETE CASCADE
+);

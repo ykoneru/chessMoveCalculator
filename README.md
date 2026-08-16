@@ -1,35 +1,92 @@
-What it actually does:
+# Chess Analyzer
 
-    Paste a PGN or upload a .pgn file and the board resets to move one. From there you can click through the game with Prev/Next, or jump back to the start whenever. Hit "Suggest Next Move" and Stockfish (compiled to WebAssembly, running in a Web Worker so it doesn't freeze the tab) chews on the position and spits out a move. Hit "Explain this move" and Gemini gives you a couple sentences on why.
+Full-stack chess app: log in, load a PGN, step through the game, get Stockfish
+move suggestions and Gemini explanations, and save games to your account.
 
-Each part:
-    
-    chess.js does all the actual chess logic — legal moves, PGN parsing, all of it. I didn't write any rules myself.
-    Stockfish is the engine. It's WASM, and it runs in a separate thread so the page stays responsive while it's searching.
-    Gemini takes the position (as FEN) and the suggested move and explains it in normal language.
-    Bootstrap for styling, because I'd rather spend my time on the chess/engine stuff than reinventing buttons.
-    Docker, so you don't need Python or Node set up locally to run this — two commands and it's up.
+Built with a static frontend, a Node/Express API, MariaDB, and nginx — all run
+together with Docker Compose.
 
-How to run:
+## Screenshots
 
-    python3 -m http.server 8080
+### Log in / register
 
-    then go to http://localhost:8080.
+![Log in page](docs/screenshots/01-login.png)
 
-Or with Docker:
+### Saved games
 
-    docker build -t chess-analyzer .
-    docker run -p 8080:80 -v $(pwd)/config.js:/usr/share/nginx/html/config.js chess-analyzer
+After login you land on your game list. Click a card to open it, or delete it
+with the red X.
 
-API key setup:
+![My saved games](docs/screenshots/02-saved-games.png)
 
-    The explain feature needs a Gemini key. It's free — no credit card, just sign in at Google AI Studio and grab one.
+### Load a PGN
 
-    cp config.example.js config.js
+Paste a PGN or upload a `.pgn` file to start analyzing.
 
-    Open config.js, paste your key in where it says YOUR_API_KEY_HERE. This file's gitignored, so it never ends up in the repo.
+![Load a PGN](docs/screenshots/03-load-pgn.png)
 
-Example PGN:
+### Analyzer
 
-    1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7
+Step through moves, ask Stockfish for the best move, then get a short Gemini
+explanation. You can also save the game from here.
 
+![Chess analyzer](docs/screenshots/04-analyzer.png)
+
+## Stack
+
+| Piece | Tech |
+|-------|------|
+| Frontend | HTML / CSS / JS (`frontend/public`) |
+| Chess rules | [chess.js](https://github.com/jhlywa/chess.js) |
+| Engine | Stockfish (WebAssembly, in the browser) |
+| Explanations | Google Gemini (via the API) |
+| API | Node.js + Express (`api/`) |
+| Auth | JWT in an httpOnly cookie |
+| Database | MariaDB |
+| Proxy | nginx |
+
+## Run locally
+
+```bash
+cp .env.example .env
+# put real values in .env (DB passwords, API_SECRET_KEY, GEMINI_API_KEY)
+
+docker compose up --build
+```
+
+Open [http://localhost:8080](http://localhost:8080).
+
+`compose.override.yml` is merged automatically and turns on nodemon + volume
+mounts for the API while you're developing.
+
+### Run without the local override
+
+```bash
+docker compose -f compose.yml up --build
+```
+
+This skips the live mounts and runs the API with `npm run start:prod`.
+
+## Project layout
+
+```
+frontend/public/   # UI, Stockfish, piece SVGs
+api/               # Express routes, auth, DB access
+database/db_schema # SQL init scripts
+proxy/             # nginx config
+docs/screenshots/  # README images
+```
+
+## Secrets
+
+Don't commit `.env` — it's gitignored. Copy from `.env.example`.
+
+If you deploy somewhere, set `MYSQL_*`, `DB_*`, `API_SECRET_KEY`, and
+`GEMINI_API_KEY` as env vars / secrets there. For a cloud database, point
+`DB_HOST` at that hostname instead of `database`.
+
+## Example PGN
+
+```
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7
+```

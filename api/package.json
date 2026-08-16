@@ -1,0 +1,19 @@
+{
+  "name": "chess-app-api",
+  "version": "1.0.0",
+  "description": "Chess analyzer API",
+  "main": "src/chessApiServer.js",
+  "scripts": {
+    "start": "nodemon -L ./src/chessApiServer.js",
+    "start:prod": "node src/chessApiServer.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mariadb": "^3.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

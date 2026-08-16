@@ -1,0 +1,13 @@
+# Merged with compose.yml on `docker compose up`.
+# Gives the API live mounts + nodemon for local work.
+# Not used if you run: docker compose -f compose.yml up --build
+
+services:
+  api:
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./api/src:/app/src
+      - ./api/package.json:/app/package.json
+    # nodemon isn't in the prod image, so install then run npm start
+    command: sh -c "npm install && npm start"

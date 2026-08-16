@@ -1,0 +1,375 @@
+:root {
+    --parchment: #F5EEDD;
+    --walnut: #2B1D14;
+    --umber: #6B4226;
+    --brass: #B08D57;
+    --ink: #1B1712;
+}
+
+body {
+    background-color: var(--parchment);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+h1,
+h3,
+h5 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+h1 {
+    text-align: center;
+    margin: 30px;
+}
+
+h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--parchment);
+}
+
+.card {
+    background-color: var(--walnut);
+    border: 2px solid var(--brass);
+    color: var(--parchment);
+    box-shadow: 0 2px 8px rgba(27, 23, 18, 0.12);
+}
+
+.card h3 {
+    color: var(--parchment);
+}
+
+.card .text-muted,
+.card small.text-muted {
+    color: rgba(245, 238, 221, 0.72) !important;
+}
+
+.card .form-control,
+.card .form-control-sm {
+    background-color: var(--parchment);
+    color: var(--ink);
+    border: 1px solid var(--brass);
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.card .form-control:focus,
+.card .form-control-sm:focus {
+    background-color: var(--parchment);
+    color: var(--ink);
+    border-color: var(--brass);
+    box-shadow: 0 0 0 0.2rem rgba(176, 141, 87, 0.25);
+}
+
+#pgn-input {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+}
+
+#pgn-input::placeholder {
+    color: rgba(27, 23, 18, 0.45);
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.btn-primary,
+.btn-success,
+#suggest-move,
+#save-game-btn,
+#load-pgn,
+#auth-submit,
+#new-game-btn {
+    background-color: var(--brass) !important;
+    border-color: var(--brass) !important;
+    color: var(--ink) !important;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+#suggest-move:hover,
+#save-game-btn:hover,
+#load-pgn:hover,
+#auth-submit:hover,
+#new-game-btn:hover {
+    background-color: #9a7a4a !important;
+    border-color: #9a7a4a !important;
+    color: var(--ink) !important;
+}
+
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-danger,
+.btn-outline-success,
+#edit-pgn,
+#back-to-games,
+#logout-btn,
+#prev-move,
+#next-move,
+#reset-game,
+#explain-move {
+    background-color: transparent;
+    border-color: var(--brass) !important;
+    color: var(--parchment) !important;
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.card .btn-outline-secondary,
+.card .btn-outline-danger,
+.card .btn-outline-primary,
+.card .btn-outline-success {
+    color: var(--parchment) !important;
+}
+
+#my-games-screen .btn-outline-secondary,
+#edit-pgn,
+#back-to-games {
+    color: var(--ink) !important;
+    border-color: var(--umber) !important;
+}
+
+#my-games-screen .btn-outline-secondary:hover,
+#edit-pgn:hover,
+#back-to-games:hover {
+    background-color: var(--umber) !important;
+    border-color: var(--umber) !important;
+    color: var(--parchment) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover,
+.btn-outline-danger:hover,
+.btn-outline-success:hover,
+#prev-move:hover,
+#next-move:hover,
+#reset-game:hover,
+#explain-move:hover {
+    background-color: var(--brass) !important;
+    border-color: var(--brass) !important;
+    color: var(--ink) !important;
+}
+
+.btn-link,
+#auth-toggle {
+    color: var(--umber) !important;
+    font-family: 'Source Serif 4', Georgia, serif;
+    text-decoration: none;
+}
+
+.btn-link:hover,
+#auth-toggle:hover {
+    color: var(--ink) !important;
+}
+
+.text-danger,
+#auth-error {
+    color: #c45c5c !important;
+}
+
+#current-move,
+#engine-move,
+#move-index,
+#move-count {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+#engine-status,
+#move-explanation {
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+#board {
+    width: min(80vw, calc(100vh - 220px), 720px);
+    height: min(80vw, calc(100vh - 220px), 720px);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: 4px solid var(--ink);
+    overflow: hidden;
+    background-color: #000;
+}
+
+#pgn-screen {
+    min-height: calc(100vh - 160px);
+}
+
+#analyzer-screen {
+    padding-bottom: 30px;
+}
+
+#analyzer-screen h5 {
+    color: var(--ink);
+}
+
+#analyzer-screen .text-muted {
+    color: rgba(27, 23, 18, 0.62) !important;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.white {
+    background-color: #f0d9b5;
+}
+
+.black {
+    background-color: #b58863;
+}
+
+.piece {
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+    display: block;
+}
+
+.selected {
+    background-color: #f6f669 !important;
+}
+
+#my-games-screen h5 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0;
+}
+
+#games-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 1rem;
+    padding: 4px;
+}
+
+.saved-game-card {
+    position: relative;
+    width: 248px;
+    max-width: 248px;
+    flex: 0 0 248px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(27, 23, 18, 0.15);
+    box-sizing: border-box;
+}
+
+.saved-game-board {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 16px 14px;
+    background: var(--walnut);
+    border: 2px solid var(--brass);
+    border-radius: 8px;
+}
+
+.saved-game-board-inner {
+    position: relative;
+    line-height: 0;
+    padding: 5px;
+    background: var(--ink);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px var(--brass);
+}
+
+.saved-game-board-inner::after {
+    content: 'Open';
+    position: absolute;
+    inset: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    background: rgba(27, 23, 18, 0.6);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.saved-game-board:hover .saved-game-board-inner::after {
+    opacity: 1;
+}
+
+.saved-game-label {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-top: 12px;
+    padding: 0 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--parchment);
+    text-align: center;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+#games-list button.saved-game-delete,
+.saved-game-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    color: var(--parchment) !important;
+    background: #9e3a3a !important;
+    border: 1px solid var(--brass) !important;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#games-list button.saved-game-delete:hover,
+.saved-game-delete:hover {
+    background: #7e2e2e !important;
+}
+
+#games-list .mini-board {
+    width: 210px !important;
+    height: 210px !important;
+    display: grid !important;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: none;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+}
+
+#games-list .mini-board .square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    min-height: 0;
+}
+
+#games-list .mini-board .square img {
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+    display: block;
+}
